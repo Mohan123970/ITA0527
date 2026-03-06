@@ -1,0 +1,14 @@
+import cv2
+
+img = cv2.imread(r"C:\Users\mohan\OneDrive\Pictures\wp6334597-jr-ntr-mobile-hd-wallpapers.png")
+
+# Crop region
+roi = img[100:300, 100:300]
+
+# Paste region somewhere else
+img[300:500, 300:500] = roi
+
+cv2.imshow("ROI Result", img)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()

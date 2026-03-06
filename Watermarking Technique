@@ -1,0 +1,19 @@
+import cv2
+
+img = cv2.imread(r"C:\Users\mohan\OneDrive\Pictures\wp6334597-jr-ntr-mobile-hd-wallpapers.png")
+watermark = cv2.imread(r"C:\Users\mohan\OneDrive\Pictures\images.jpeg")
+
+watermark = cv2.resize(watermark, (200,100))
+
+h, w, c = watermark.shape
+
+roi = img[0:h, 0:w]
+
+result = cv2.addWeighted(roi, 0.8, watermark, 0.2, 0)
+
+img[0:h, 0:w] = result
+
+cv2.imshow("Watermarked Image", img)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()

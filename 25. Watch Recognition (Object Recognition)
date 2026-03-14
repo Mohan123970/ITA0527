@@ -1,0 +1,28 @@
+import cv2
+
+# Load face cascade
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+
+# Correct image path (use raw string)
+image = cv2.imread(r"C:\Users\mohan\Downloads\ChatGPT Image Mar 14, 2026, 10_19_15 AM.png")
+
+# Check if image loaded
+if image is None:
+    print("Error: Image not found")
+    exit()
+
+# Convert to grayscale
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Detect faces
+faces = face_cascade.detectMultiScale(gray, 1.1, 5)
+
+# Draw rectangles
+for (x, y, w, h) in faces:
+    cv2.rectangle(image, (x,y), (x+w,y+h), (0,255,0), 2)
+
+# Show result
+cv2.imshow("Detection", image)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
